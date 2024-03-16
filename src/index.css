@@ -1,0 +1,13 @@
+.characters {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+}
+.character {
+  display: flex;
+}
+.character-content,
+.character-episode {
+  margin-left: 2rem;
+}
+ 
