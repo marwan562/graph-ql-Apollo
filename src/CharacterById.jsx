@@ -4,7 +4,7 @@ import Loading from "./HOC/Loading";
 
 const CharacterById = () => {
   let { id } = useParams();
-  const { loading, error, data } = useCharacter(id);
+  const { loading, error, data, getCharacter } = useCharacter(id);
 
   const handelCharacters = data?.character && (
     <div className="character" key={data.character.id}>
@@ -34,6 +34,8 @@ const CharacterById = () => {
 
       <div className="characters">
         <Loading loading={loading} error={error}>
+          <h2>Click button to show {data?.character?.name} </h2>
+          <button onClick={() => getCharacter()}>Click</button>
           {handelCharacters}
         </Loading>
       </div>

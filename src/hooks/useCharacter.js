@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { useLazyQuery, gql } from "@apollo/client";
 
 const GET_CHARACTER = gql`
   query getCharacter($id: ID!) {
@@ -16,12 +16,12 @@ const GET_CHARACTER = gql`
 `;
 
 const useCharacter = (id) => {
-  const { loading, error, data } = useQuery(GET_CHARACTER, {
+  const [getCharacter, { loading, error, data }] = useLazyQuery(GET_CHARACTER, {
     variables: {
       id: id,
     },
   });
-  return { loading, error, data };
+  return { loading, error, data, getCharacter };
 };
 
 export default useCharacter;

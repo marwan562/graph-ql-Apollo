@@ -1,44 +1,28 @@
 import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
-
-const SEARCH_LOCATIONS = gql`
-  query getCharacterLocation($name: String!) {
-    characters(filter: { name: $name }) {
-      results {
-        location {
-          name
-        }
-      }
-    }
-  }
-`;
+import useSearchLocations from "./useSearchLocations";
 
 const SearchChracters = () => {
-  const [getLocations, { loading, error, data, call }] = useQuery(
-    SEARCH_LOCATIONS,
-    {
-      variables: {
-        name,
-      },
-    }
-  );
+  const [name, setName] = useState("");
 
-  console.log(loading, error, data);
-  const [term, serTerm] = useState("");
+  const { loading, error, data, called, getLocations } =
+    useSearchLocations(name);
+
+  console.log(loading, error, data, called);
+
   return (
     <div>
       <h3>Search at characters</h3>
       <hr />
       <div>
         <input
-          value={term}
-          onChange={(e) => serTerm(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="search..."
           style={{ padding: "10px" }}
         />
       </div>
-      <button> Search</button>
+      <button onClick={() => getLocations()}>Search</button>
     </div>
   );
 };
