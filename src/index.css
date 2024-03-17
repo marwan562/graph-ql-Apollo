@@ -2,6 +2,7 @@
   flex-wrap: wrap;
   display: flex;
   justify-content: space-evenly;
+  
 }
 .character {
   display: flex;
@@ -10,4 +11,3 @@
 .character-episode {
   margin-left: 2rem;
 }
- 
