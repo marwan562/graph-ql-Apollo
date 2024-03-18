@@ -9,7 +9,9 @@ const LanuageByName = () => {
   const { loading, error, data } = useCountry(id);
 
   const countryResults = data?.language && (
-    <div style={{ marginBottom: "15px" }}>{data.language.name}</div>
+    <div style={{ marginBottom: "15px" }}>
+      <b>Name Country:</b> {data.language.name}
+    </div>
   );
 
   return (
